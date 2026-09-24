@@ -146,7 +146,7 @@ def sod_analytical_solver(rhoL, PL,uL, rhoR, PR, uR, gamma, x_grid, x0,t):
                     
                 else:
                     rho_arr[i], u_arr[i], P_arr[i] = WR                   
-        print(SR)         
+       
     return rho_arr, u_arr, P_arr
 
 def main():

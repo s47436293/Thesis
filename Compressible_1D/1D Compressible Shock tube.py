@@ -330,24 +330,18 @@ U_norm_digi = U_norm_digi.sort_values("x")
 
 
 #Importing TCLB code profiles
-#mesh = pv.read("Florian1d1q3_sod_Rho,U,Theta,Entropy_P00_00000358.vti")
+mesh = pv.read("Florian1d1q3_sod_Rho,U,Theta,Entropy_P00_00000358.vti")
 
 
-mesh = pv.read("5d2q9sodd2q9_sod_VTK_P00_00000358.vti")
+
 x_norm_TCLB = (np.arange(NX) + 0.5) * dx_phys / L_phys      # cell centres
-nx, ny, _ = np.array(mesh.dimensions) - 1     # points -> cells: 401, 4, 1
-j  = ny // 2                                  # any row
-sl = slice(j*nx, (j+1)*nx)                    # that row, x fastest
 
-rho_TCLB   = mesh["Rho"][sl]
-u_TCLB     = mesh["U"][sl]                    # still (nx, 3)
-theta_TCLB = mesh["Theta"][sl]
-"""
+
 rho_TCLB = mesh["Rho"]
 u_TCLB = mesh["U"]
 theta_TCLB = mesh["Theta"]
 
-"""
+
 
 #Normalise TCLB Curves
 rho_norm_TCLB = rho_TCLB/ rho_R
@@ -362,12 +356,12 @@ with plt.style.context(["science", "no-latex"]):
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(6.5, 8.5),sharex = True )
     
     #Analytic
-   # ax1.plot(x_norm, rho_norm_an, "k-", lw= 1.4, label = "Analytic")
+    ax1.plot(x_norm, rho_norm_an, "k-", lw= 1.4, label = "Analytic")
     #Python Script
-    """
+    
     ax1.plot(x_norm[::stride], rho_norm_sim[::stride], "o", color ="tab:red", mfc="none", ms=5, lw=0, label="Python (HLBM)")
     ax1.plot(x_norm, rho_norm_sim, ":", color="tab:red", lw=0.9)
-    """
+    
     #Florian Thesis
     ax1.plot(rho_norm_digi["x"][::stride], rho_norm_digi["y"][::stride], "o", color ="tab:blue", mfc="none", ms=5, lw=0, label="Florian")
     ax1.plot(rho_norm_digi["x"], rho_norm_digi["y"], ":", color="tab:blue", lw=0.9)
@@ -379,12 +373,12 @@ with plt.style.context(["science", "no-latex"]):
  
     
     #Analytic
-    #x2.plot(x_norm, T_norm_an, "k-", lw= 1.4, label = "Analytic")
+    ax2.plot(x_norm, T_norm_an, "k-", lw= 1.4, label = "Analytic")
     #Python Script
-    """
+    
     ax2.plot(x_norm[::stride], T_norm_sim[::stride], "o", color ="tab:red", mfc="none", ms=5, lw=0, label="Python (HLBM)")
     ax2.plot(x_norm, T_norm_sim, ":", color="tab:red", lw=0.9)
-    """
+    
     #Florian thesis
     ax2.plot(T_norm_digi["x"][::stride], T_norm_digi["y"][::stride], "o", color ="tab:blue", mfc="none", ms=5, lw=0, label="Florian")
     ax2.plot(T_norm_digi["x"], T_norm_digi["y"], ":", color="tab:blue", lw=0.9)
@@ -395,12 +389,12 @@ with plt.style.context(["science", "no-latex"]):
     ax2.grid(alpha=0.25)
     
     #Analytic
-    #ax3.plot(x_norm, u_norm_an, "k-", lw= 1.4, label = "Analytic")
+    ax3.plot(x_norm, u_norm_an, "k-", lw= 1.4, label = "Analytic")
     #Python Script
-    """
+    
     ax3.plot(x_norm[::stride], u_norm_sim[::stride], "o", color ="tab:red", mfc="none", ms=5, lw=0, label="Python (HLBM)")
     ax3.plot(x_norm, u_norm_sim, ":", color="tab:red", lw=0.9)
-    """
+    
     #Florian Thesis
     ax3.plot(U_norm_digi["x"][::stride], U_norm_digi["y"][::stride], "o", color ="tab:blue", mfc="none", ms=5, lw=0, label="Florian")
     ax3.plot(U_norm_digi["x"], U_norm_digi["y"], ":", color="tab:blue", lw=0.9)
@@ -410,7 +404,7 @@ with plt.style.context(["science", "no-latex"]):
     ax3.set_ylabel(r"$u\,/\,c_R$")
     ax3.grid(alpha=0.25)
     
-#fig, axes = plt.subplots(3, 1, figsize=(6.5, 8.5), sharex=True)
+
 
     ax1.legend(loc="lower left", fontsize=9)
     ax3.set_xlabel(r"$x\;/\;L$"); 
