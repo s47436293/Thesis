@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<CLBConfig version="2.0" output="output/Gif_12">
+	<Units>
+		<Param value="0.0025m" gauge="1" />
+		<Param value="1.176829kg/m3" gauge="1" />
+		<Param value="1136.4418154925486m/s" gauge="1" />
+	</Units>
+	<Geometry nx="800" ny="800">
+		<None name="Quad1">
+			<Box dx="-400" dy="-400" />
+		</None>
+		<None name="Quad2">
+			<Box nx="400" dy="-400" />
+		</None>
+		<None name="Quad3">
+			<Box nx="400" ny="400" />
+		</None>
+		<None name="Quad4">
+			<Box dx="-400" ny="400" />
+		</None>
+	</Geometry>
+	<Model>
+		<Param name="Viscosity" value="1e-5kg/m/s" />
+		<Param name="gamma_g" value="1.4" />
+		<Param name="Pr" value="0.71" />
+		<Param name="T_r" value="1500K" />
+		<Param name="D_dim" value="2.0" />
+		<Param name="sigma" value="0.0" />
+		<Param name="chi" value="0.3333333" />
+		<Param name="InitRho" value="0.6252kg/m3" zone="Quad1" />
+		<Param name="InitRho" value="1.176829kg/m3" zone="Quad2" />
+		<Param name="InitRho" value="0.9415kg/m3" zone="Quad3" />
+		<Param name="InitRho" value="1.1768kg/m3" zone="Quad4" />
+		<Param name="T_inf" value="300K" />
+		<Param name="T_inf" value="225.86K" zone="Quad1" />
+		<Param name="T_inf" value="375K" zone="Quad3" />
+		<Param name="InitUx" value="0m/s" />
+		<Param name="InitUx" value="213.50m/s" zone="Quad2" />
+		<Param name="InitUy" value="0m/s" />
+		<Param name="InitUy" value="213.50m/s" zone="Quad4" />
+	</Model>
+	<VTK />
+	<Solve Iterations="387">
+		<VTK Iterations="5" what="Rho,Pressure" />
+	</Solve>
+	<VTK what="Rho,Pressure" />
+	<Run model="d2q9comp">
+		<Code version="v6.7-102-g133947cb" precision="double" cross="CPU" />
+	</Run>
+</CLBConfig>

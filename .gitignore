@@ -1,0 +1,18 @@
+# Spyder IDE configuration folders
+.spyproject/
+.spyderproject/
+
+# Python cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large data files (uncomment/add yours if needed)
+*.csv
+*.xlsx
+*.pkl
+*.npy
+*.h5
+*.pvti
+*.vti
